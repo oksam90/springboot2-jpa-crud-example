@@ -12,17 +12,17 @@ import javax.persistence.Table;
 public class Employee {
 	
 	private Long id;
-	private String nom;
-	private String prenom;
+	private String firstName;
+	private String lastName;
 	private String emailId;
 	
 	public Employee() {
 		  
     }
  
-    public Employee(String nom, String prenom, String emailId) {
-         this.nom = nom;
-         this.prenom = prenom;
+    public Employee(String firstName, String lastName, String emailId) {
+         this.firstName = firstName;
+         this.lastName = lastName;
          this.emailId = emailId;
     }
 
@@ -36,25 +36,25 @@ public class Employee {
 		this.id = id;
 	}
 
-	@Column(name = "nom_empl", nullable = false)
-	public String getNom() {
-		return nom;
+	@Column(name = "first_name", nullable = false)
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	@Column(name = "prenom_empl", nullable = false)
-	public String getPrenom() {
-		return prenom;
+	@Column(name = "last_name", nullable = false)
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	@Column(name = "email_empl", nullable = false)
+	@Column(name = "email_address", nullable = false)
 	public String getEmailId() {
 		return emailId;
 	}
@@ -65,7 +65,7 @@ public class Employee {
 	
 	@Override
     public String toString() {
-        return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", emailId=" + emailId
+        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
        + "]";
     }
     

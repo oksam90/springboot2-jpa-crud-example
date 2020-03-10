@@ -22,7 +22,8 @@ import nn.oksam90.springboot2jpa.exception.ResourceNotFoundException;
 import nn.oksam90.springboot2jpa.model.Employee;
 import nn.oksam90.springboot2jpa.repository.EmployeeRepository;
 
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+@RestController 
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class EmployeeController {
 	
@@ -38,7 +39,7 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
         throws ResourceNotFoundException {
         Employee employee = employeeRepository.findById(employeeId)
-          .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+          .orElseThrow(() -> new ResourceNotFoundException("Employé introuvable pour cet identifiant :: " + employeeId));
         return ResponseEntity.ok().body(employee);
     }
 	
@@ -51,11 +52,11 @@ public class EmployeeController {
 	    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
 	         @Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
 	        Employee employee = employeeRepository.findById(employeeId)
-	        .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+	        .orElseThrow(() -> new ResourceNotFoundException("Employé introuvable pour cet identifiant :: " + employeeId));
 
 	        employee.setEmailId(employeeDetails.getEmailId());
-	        employee.setPrenom(employeeDetails.getPrenom());
-	        employee.setNom(employeeDetails.getNom());
+	        employee.setLastName(employeeDetails.getLastName());
+	        employee.setFirstName(employeeDetails.getFirstName());
 	        final Employee updatedEmployee = employeeRepository.save(employee);
 	        return ResponseEntity.ok(updatedEmployee);
 	    }
@@ -64,7 +65,7 @@ public class EmployeeController {
 	    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId)
 	         throws ResourceNotFoundException {
 	        Employee employee = employeeRepository.findById(employeeId)
-	       .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+	       .orElseThrow(() -> new ResourceNotFoundException("Employé introuvable pour cet identifiant :: " + employeeId));
 
 	        employeeRepository.delete(employee);
 	        Map<String, Boolean> response = new HashMap<>();
